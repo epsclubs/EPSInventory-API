@@ -1,5 +1,7 @@
 <?php
 
-phpinfo();
+$mongo = new MongoClient();
+var_dump($mongo);
+// phpinfo();
 
-echo 'test 2';
+echo 'test 3';

@@ -5,7 +5,7 @@ namespace EPSI;
 class MongoConnector{
   private static string $url = 'mongodb://test:test@dogen.mongohq.com:10080/epsclubs';
   private static string $db = 'epsclubs';
-  private static string $collection = 'cartoons';
+  private static string $collection = 'eps-inv';
 
   public static function getMongoClient():\MongoClient{
     return new \MongoClient(self::$url);

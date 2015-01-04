@@ -15,6 +15,7 @@ echo '<pre>';
 // $cursor = $collection->find();
 $cursor = EPSI\MongoConnector::getMongoCursor();
 //
+var_dump($cursor->count());
 foreach ($cursor as $document) {
-  var_dump($document);
+  // var_dump($document['_id']->__toString());
 }

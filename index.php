@@ -14,10 +14,11 @@ try {
   $params = $_REQUEST;
   $params = (array) $params;
 
-  $controller = ucfirst(strtolower($params['controller']));
+  $controller = ucfirst(strtolower($params['controller'])).'Controller';
   $action = strtolower($params['action']).'Action';
 
   if( file_exists("controllers/{$controller}.php") ) {
+    $_mongoCollection = EPSI\MongoConnector::getMongoCollection();
     include_once "controllers/{$controller}.php";
   } else {
     throw new Exception('Controller is invalid.');

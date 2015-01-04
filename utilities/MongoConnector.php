@@ -18,6 +18,10 @@ class MongoConnector{
   public static function getMongoCollection():\MongoCollection{
     $db = self::getMongoDB();
     $collectionName = self::$collection;
-    return $db->$collection;
+    return $db->$collectionName;
+  }
+  public static function getMongoCursor():\MongoCursor{
+    $collection = self::getMongoCollection();
+    return $collection->find();
   }
 }

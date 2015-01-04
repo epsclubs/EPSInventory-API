@@ -1,5 +1,5 @@
 <?php
-
+require('vendor/autoload.php');
 $m = new MongoClient('mongodb://test:test@dogen.mongohq.com:10080/epsclubs');
 // echo '<pre>';
 // phpinfo();

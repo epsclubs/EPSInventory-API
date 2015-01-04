@@ -1,6 +1,12 @@
 <?php
 
-public $type; // int or string
-public $name; // string
-public $properties; // Array of strings
-public $Lists; // Array of arrays
+class Object{
+  // public string $type; // int or string
+  // public string $name; // string
+  public array<string> $properties; // Array of strings
+  public array<Object> $Lists; // Array of Objects
+
+  public function save() : array{
+
+  }
+}

@@ -35,7 +35,9 @@ try {
   //   'properties'=>array('name'=>'Benzene')
   // ];
   // Read Sample
-  $params = ['controller'=>'object','action'=>'read','options'=>['tree'=>true]];
+  $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
+  // Remove Sample
+  // $params = ['controller'=>'object','action'=>'remove','criteria'=>['_id'=>'54a9c615a528fae772d94d07'],'options'=>['tree'=>true]];
   $params = (array) $params;
 
   $controller = ucfirst(strtolower($params['controller'])).'Controller';

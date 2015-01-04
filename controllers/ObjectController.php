@@ -12,7 +12,7 @@ class ObjectController{
   }
 
   public function exists(string $name, string $type):bool{
-    global $_mongoCollection;
+    // global $_mongoCollection;
     return true;
   }
 }

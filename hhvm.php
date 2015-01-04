@@ -1,2 +1,3 @@
-<?php
+<?hh
 phpinfo();
+echo "a";

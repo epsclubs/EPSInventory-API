@@ -1,13 +1,14 @@
-<?php
+<?hh //strict
 
 class ObjectController{
-  private array $_params;
+  private array<string> $_params = array();
 
-  public function __construct(array $params): void{
+  public function __construct(array<string> $params): void{
     $this->_params = $params;
   }
 
-  public function createAction(): array{
-
+  public function createAction(): array<string>{
+    aaa
+    return array();
   }
 }

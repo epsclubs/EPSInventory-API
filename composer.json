@@ -1,0 +1,6 @@
+{
+    "require": {
+        "mongofill/mongofill": "dev-master"
+    }
+}
+

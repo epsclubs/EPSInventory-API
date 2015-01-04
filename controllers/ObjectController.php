@@ -8,7 +8,6 @@ class ObjectController{
   }
 
   public function createAction(): array<string>{
-    aaa
     return array();
   }
 }

@@ -10,6 +10,7 @@ echo '<pre>';
 // $db = EPSI\MongoConnector::getMongoDB();
 // $collection = $db->cartoons;
 // $collection = EPSI\MongoConnector::getMongoCollection();
+// // $collection->remove();
 // var_dump($collection);
 // // var_dump(EPSI\MongoConnector::getMongoCursor());
 // $cursor = $collection->find();
@@ -17,5 +18,6 @@ $cursor = EPSI\MongoConnector::getMongoCursor();
 //
 var_dump($cursor->count());
 foreach ($cursor as $document) {
-  // var_dump($document['_id']->__toString());
+  var_dump($document['_id']->__toString());
+  var_dump($document);
 }

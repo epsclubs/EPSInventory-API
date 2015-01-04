@@ -11,14 +11,38 @@ include_once 'models/Object.php';
 
 try {
 
-  $params = $_REQUEST;
+  // $params = $_REQUEST;
+  // Create Sample
+  // $params = [
+  //   'controller'=>'object',
+  //   'action'=>'create',
+  //   'type'=>'Subject',
+  //   'parent'=>'none',
+  //   'properties'=>array('name'=>'Chemistry')
+  // ];
+  // $params = [
+  //   'controller'=>'object',
+  //   'action'=>'create',
+  //   'type'=>'List',
+  //   'parent'=>'54a9b949a528fae772d94d05',
+  //   'properties'=>array('name'=>'Chemicals')
+  // ];
+  // $params = [
+  //   'controller'=>'object',
+  //   'action'=>'create',
+  //   'type'=>'Chemical',
+  //   'parent'=>'54a9c4eca528fae772d94d06',
+  //   'properties'=>array('name'=>'Benzene')
+  // ];
+  // Read Sample
+  $params = ['controller'=>'object','action'=>'read','options'=>['tree'=>true]];
   $params = (array) $params;
 
   $controller = ucfirst(strtolower($params['controller'])).'Controller';
   $action = strtolower($params['action']).'Action';
 
   if( file_exists("controllers/{$controller}.php") ) {
-    $_mongoCollection = EPSI\MongoConnector::getMongoCollection();
+    // $_mongoCollection = EPSI\MongoConnector::getMongoCollection();
     include_once "controllers/{$controller}.php";
   } else {
     throw new Exception('Controller is invalid.');
@@ -38,8 +62,9 @@ try {
   $result['success'] = false;
   $result['errormsg'] = $e->getMessage();
 }
-
-echo json_encode($result);
+echo '<pre>';
+// echo json_encode($result);
+var_dump($result);
 exit();
 
 

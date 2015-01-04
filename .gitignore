@@ -1,2 +1,6 @@
 
 .atom-hack
+
+vendor/
+
+composer.phar

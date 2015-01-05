@@ -60,6 +60,7 @@ class ObjectController{
 
   public function removeAction():bool{
     $collection = EPSI\MongoConnector::getMongoCollection();
+
     if(!isset($this->_params['criteria'])) throw new Exception("Cannot remove Object: Criteria not found.");
 
     foreach($this->_params['criteria'] as $key => $val){
@@ -69,6 +70,22 @@ class ObjectController{
     }
 
     return (bool)$collection->remove($this->_params['criteria']);
+  }
+
+  public function updateAction():bool{
+    $collection = EPSI\MongoConnector::getMongoCollection();
+
+    if(!isset($this->_params['criteria'])) throw new Exception("Cannot update Object: Criteria not found.");
+    if(!isset($this->_params['properties'])) throw new Exception("Cannot update Object: Properties not found.");
+    if(!isset($this->_params['options']['multiple'])) throw new Exception("Cannot update Object: Update multiple objects?{['options']['multiple']}");
+
+    foreach($this->_params['criteria'] as $key => $val){
+      if($key == '_id'){
+        $this->_params['criteria'][$key] = $this->idToMongoId($val);
+      }
+    }
+
+    return (bool)$collection->update($this->_params['criteria'],['$set'=>$this->_params['properties']],$this->_params['options']);
   }
 
   private function idToMongoId(string $_id):MongoId{

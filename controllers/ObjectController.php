@@ -107,9 +107,4 @@ class ObjectController{
   private function idToMongoId(string $_id):MongoId{
     return new MongoId($_id);
   }
-
-  public function exists(string $name, string $type):bool{
-    // global $_mongoCollection;
-    return true;
-  }
 }

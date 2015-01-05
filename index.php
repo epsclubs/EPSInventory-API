@@ -11,7 +11,7 @@ include_once 'models/Object.php';
 
 try {
 
-  // $params = $_REQUEST;
+  $params = $_REQUEST;
   // Create Sample
   // $params = [
   //   'controller'=>'object',
@@ -35,7 +35,7 @@ try {
   //   'properties'=>array('name'=>'Benzene')
   // ];
   // Read Sample
-  $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
+  // $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
   // Remove Sample
   // $params = ['controller'=>'object','action'=>'remove','criteria'=>['_id'=>'54a9c615a528fae772d94d07'],'options'=>['tree'=>true]];
   // Update Sample
@@ -84,34 +84,3 @@ echo '<pre>';
 // echo json_encode($result);
 var_dump($result);
 exit();
-
-
-
-
-
-$m = new MongoClient('mongodb://test:test@dogen.mongohq.com:10080/epsclubs');
-// echo '<pre>';
-// phpinfo();
-
-// echo 'test 3';
-
-$db = $m->epsclubs;
-
-// select a collection (analogous to a relational database's table)
-$collection = $db->cartoons;
-
-// add a record
-$document = array( "title" => "Calvin and Hobbes", "author" => "Bill Watterson" );
-$collection->insert($document);
-
-// add another record, with a different "shape"
-$document = array( "title" => "XKCD", "online" => true );
-$collection->insert($document);
-
-// find everything in the collection
-$cursor = $collection->find();
-
-// iterate through the results
-foreach ($cursor as $document) {
-  echo $document["title"] . "\n";
-}

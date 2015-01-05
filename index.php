@@ -80,7 +80,7 @@ try {
   $result['success'] = false;
   $result['errormsg'] = $e->getMessage();
 }
-echo '<pre>';
-// echo json_encode($result);
-var_dump($result);
+// echo '<pre>';
+echo json_encode($result);
+// var_dump($result);
 exit();

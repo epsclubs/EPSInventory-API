@@ -35,17 +35,25 @@ try {
   //   'properties'=>array('name'=>'Benzene')
   // ];
   // Read Sample
-  // $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
+  $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
   // Remove Sample
   // $params = ['controller'=>'object','action'=>'remove','criteria'=>['_id'=>'54a9c615a528fae772d94d07'],'options'=>['tree'=>true]];
   // Update Sample
-  $params = [
-    'controller'=>'object',
-    'action'=>'update',
-    'criteria'=>['_id'=>'54a9ccf8a528fae772d94d08'],
-    'properties'=>['properties.name'=>'Benzene','properties.quantity'=>'90000'],
-    'options'=>['multiple'=>true,'upsert'=>true]
-  ];
+  // $params = [
+  //   'controller'=>'object',
+  //   'action'=>'update',
+  //   'criteria'=>['_id'=>'54a9ccf8a528fae772d94d08'],
+  //   'properties'=>['properties.name'=>'Benzene','properties.quantity'=>'90000'],
+  //   'options'=>['multiple'=>true,'upsert'=>true]
+  // ];
+  // Unset Sample
+  // $params = [
+  //   'controller'=>'object',
+  //   'action'=>'unset',
+  //   'criteria'=>['_id'=>'54a9ccf8a528fae772d94d08'],
+  //   'properties'=>['properties.quantity'=>'9000'],
+  //   'options'=>['multiple'=>true]
+  // ];
   $params = (array) $params;
 
   $controller = ucfirst(strtolower($params['controller'])).'Controller';

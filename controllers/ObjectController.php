@@ -85,7 +85,23 @@ class ObjectController{
       }
     }
 
-    return (bool)$collection->update($this->_params['criteria'],['$set'=>$this->_params['properties']],$this->_params['options']);
+    return (bool)$collection->update($this->_params['criteria'],['$set'=>$this->_params['properties']],['upsert'=>true,$this->_params['options']['multiple']]);
+  }
+
+  public function unsetAction():bool{
+    $collection = EPSI\MongoConnector::getMongoCollection();
+
+    if(!isset($this->_params['criteria'])) throw new Exception("Cannot pull Object properties: Criteria not found.");
+    if(!isset($this->_params['properties'])) throw new Exception("Cannot pull Object properties: Properties not found.");
+    if(!isset($this->_params['options']['multiple'])) throw new Exception("Cannot pull Object properties: Pull multiple objects?{['options']['multiple']}");
+
+    foreach($this->_params['criteria'] as $key => $val){
+      if($key == '_id'){
+        $this->_params['criteria'][$key] = $this->idToMongoId($val);
+      }
+    }
+
+    return (bool)$collection->update($this->_params['criteria'],['$unset'=>$this->_params['properties']],[$this->_params['options']['multiple']]);
   }
 
   private function idToMongoId(string $_id):MongoId{

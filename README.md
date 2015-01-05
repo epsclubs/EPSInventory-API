@@ -1,6 +1,6 @@
 EPSInventory-API
 ================
-Application Programming Interface for the EPS Inventory Project
+Application Programming Interface for the EPS Inventory Project.
 
 ##Overview
 Two data models are used for this API, `User` and `Object`.
@@ -55,3 +55,64 @@ unset | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>`
 
 ##TO-DO
 1. `User` Object Model (authentication and stuff)
+ 
+## Example Server Response
+```php
+array(2) {
+  ["data"]=>
+  array(1) {
+    [0]=>
+    array(5) {
+      ["_id"]=>
+      string(24) "54a9b949a528fae772d94d05"
+      ["parent"]=>
+      string(4) "none"
+      ["type"]=>
+      string(7) "Subject"
+      ["properties"]=>
+      array(1) {
+        ["name"]=>
+        string(9) "Chemistry"
+      }
+      ["children"]=>
+      array(1) {
+        [0]=>
+        array(5) {
+          ["_id"]=>
+          string(24) "54a9c4eca528fae772d94d06"
+          ["parent"]=>
+          string(24) "54a9b949a528fae772d94d05"
+          ["type"]=>
+          string(4) "List"
+          ["properties"]=>
+          array(1) {
+            ["name"]=>
+            string(9) "Chemicals"
+          }
+          ["children"]=>
+          array(1) {
+            [0]=>
+            array(5) {
+              ["_id"]=>
+              string(24) "54a9ccf8a528fae772d94d08"
+              ["parent"]=>
+              string(24) "54a9c4eca528fae772d94d06"
+              ["type"]=>
+              string(8) "Chemical"
+              ["properties"]=>
+              array(1) {
+                ["name"]=>
+                string(7) "Benzene"
+              }
+              ["children"]=>
+              NULL
+            }
+          }
+        }
+      }
+    }
+  }
+  ["success"]=>
+  bool(true)
+}
+```

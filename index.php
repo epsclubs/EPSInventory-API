@@ -1,8 +1,6 @@
 <?php
 require('vendor/autoload.php');
 
-new EPSI\MongoConnector();
-
 $applications = array(
   'APP001' => '28e336ac6c9423d946ba02d19c6a2632', //randomly generated app key
 );

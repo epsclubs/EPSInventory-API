@@ -93,7 +93,7 @@ class ObjectController{
 
     if(!isset($this->_params['criteria'])) throw new Exception("Cannot pull Object properties: Criteria not found.");
     if(!isset($this->_params['properties'])) throw new Exception("Cannot pull Object properties: Properties not found.");
-    if(!isset($this->_params['options']['multiple'])) throw new Exception("Cannot pull Object properties: Pull multiple objects?{['options']['multiple']}");
+    if(!isset($this->_params['options']['multiple'])) throw new Exception("Cannot pull Object properties: Unset multiple objects?{['options']['multiple']}");
 
     foreach($this->_params['criteria'] as $key => $val){
       if($key == '_id'){

@@ -1,15 +1,19 @@
 <?php
+
+require 'utilities/ErrorHandler.php';
+set_error_handler(error_handler);
+
 require('vendor/autoload.php');
 
 $applications = array(
-  'APP001' => '28e336ac6c9423d946ba02d19c6a2632', //randomly generated app key
+  'APP001' => '28e336ac6c9423d946ba02d19c6a2632' //randomly generated app key
 );
 
 include_once 'models/Object.php';
 
 try {
 
-  $params = $_REQUEST;
+  $params = json_decode($_REQUEST['req'],true);
   // Create Sample
   // $params = [
   //   'controller'=>'object',
@@ -33,7 +37,7 @@ try {
   //   'properties'=>array('name'=>'Benzene')
   // ];
   // Read Sample
-  // $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54a9b949a528fae772d94d05'],'options'=>['tree'=>true]];
+  // $params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54aac226a528fae772d94d0a'],'options'=>['tree'=>true]];
   // Remove Sample
   // $params = ['controller'=>'object','action'=>'remove','criteria'=>['_id'=>'54a9c615a528fae772d94d07'],'options'=>['tree'=>true]];
   // Update Sample

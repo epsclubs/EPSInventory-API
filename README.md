@@ -18,26 +18,33 @@ properties: {
   "unit": "gram"
 }
 ```
+##Preparing an API call
 
-##Calling the API
-API calls can be made with either POST or GET request.
+An API call consists of the following parameters:
 
-**Sample API Calls in jQuery**
-```javascript
-// POST
-$.post( "http://example.com/api/", { controller: "object", action: "read", options: {tree:true} })
-  .done(function( data ) {
-    alert( "Data Received: " + data );
-});
+1. controller - ex. `object`
+2. action - ex. `read`
+3. parameters passed to the action
 
-// GET
-$.get( "http://example.com/api/?controller=object&action=read&options=tree" })
-  .done(function( data ) {
-    alert( "Data Received: " + data );
-});
+Above parameters are `json_encode`d into single string parameter named '`req`'.
+
+Example:
+```php
+// An example request json_encoded in PHP
+$params = ['controller'=>'object','action'=>'read','criteria'=>['_id'=>'54aac226a528fae772d94d0a'],'options'=>['tree'=>true]];
+$req = json_encode($params);
+echo $req;
 ```
 
-**List of actions available for Object model**
+Output (It's a string!):
+```json
+{"controller":"object","action":"read","criteria":{"_id":"54aac226a528fae772d94d0a"},"options":{"tree":true}}
+```
+
+*Note: In C#, use [JavaScriptSerializer Class](http://msdn.microsoft.com/en-us/library/system.web.script.serialization.javascriptserializer.aspx).*
+
+
+####List of actions available for `Object` model`(controller:object)`
 
 * `create`: Creates an Object
 * `read`: Returns an Object
@@ -45,7 +52,7 @@ $.get( "http://example.com/api/?controller=object&action=read&options=tree" })
 * `update`: Updates or inserts Object properties
 * `unset`: Removes Object properties
 
-Name | Parameters | Response
+Action | Parameters | Response
 ---- | ---------- | --------
 create | `string parent`, `string type`, `array<string> properties` | `array` of `Object`
 read | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>Optional: `bool tree`(gets all sub-Objects) ex.`{options:{tree:true}}` | `array` of `Object`
@@ -53,66 +60,39 @@ remove | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}` | `b
 update | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
 unset | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
 
+
+##Calling the API
+API calls can be made with either POST or GET request.
+
+**Sample API Calls in jQuery**
+```javascript
+// POST
+$.post( "http://example.com/api/", { req: '{"controller":"object","action":"read","criteria":{"_id":"54aac226a528fae772d94d0a"},"options":{"tree":true}}' })
+  .done(function( data ) {
+    alert( "Data Received: " + data );
+});
+
+// GET
+var req = '{"controller":"object","action":"read","criteria":{"_id":"54aac226a528fae772d94d0a"},"options":{"tree":true}}';
+$.get( "http://example.com/api/?req="+req })
+  .done(function( data ) {
+    alert( "Data Received: " + data );
+});
+```
+
 ##TO-DO
-1. `User` Object Model (authentication and stuff)
- 
+- [ ] `User` Object Model (authentication and stuff)
+
 ## Example Server Response
-```php
-array(2) {
-  ["data"]=>
-  array(1) {
-    [0]=>
-    array(5) {
-      ["_id"]=>
-      string(24) "54a9b949a528fae772d94d05"
-      ["parent"]=>
-      string(4) "none"
-      ["type"]=>
-      string(7) "Subject"
-      ["properties"]=>
-      array(1) {
-        ["name"]=>
-        string(9) "Chemistry"
-      }
-      ["children"]=>
-      array(1) {
-        [0]=>
-        array(5) {
-          ["_id"]=>
-          string(24) "54a9c4eca528fae772d94d06"
-          ["parent"]=>
-          string(24) "54a9b949a528fae772d94d05"
-          ["type"]=>
-          string(4) "List"
-          ["properties"]=>
-          array(1) {
-            ["name"]=>
-            string(9) "Chemicals"
-          }
-          ["children"]=>
-          array(1) {
-            [0]=>
-            array(5) {
-              ["_id"]=>
-              string(24) "54a9ccf8a528fae772d94d08"
-              ["parent"]=>
-              string(24) "54a9c4eca528fae772d94d06"
-              ["type"]=>
-              string(8) "Chemical"
-              ["properties"]=>
-              array(1) {
-                ["name"]=>
-                string(7) "Benzene"
-              }
-              ["children"]=>
-              NULL
-            }
-          }
-        }
-      }
-    }
-  }
-  ["success"]=>
-  bool(true)
-}
+
+Request:
+```
+POST /EPSInventory-API/?req={"controller":"object","action":"read","criteria":{"_id":"54aac226a528fae772d94d0a"},"options":{"tree":true}} HTTP/1.1
+Host: koding.benzhang.xyz
+Cache-Control: no-cache
+```
+
+Response:
+```json
+{"data":[{"_id":"54aac226a528fae772d94d0a","parent":"none","type":"Subject","properties":{"name":"Chemistry"},"children":[{"_id":"54aac27fa528fae772d94d0b","parent":"54aac226a528fae772d94d0a","type":"List","properties":{"name":"Chemicals"},"children":[{"_id":"54a9ccf8a528fae772d94d08","parent":"54aac27fa528fae772d94d0b","type":"Chemical","properties":{"name":"Benzene","quantity":900000,"unit":"gram"},"children":null}]}]}],"success":true}
 ```

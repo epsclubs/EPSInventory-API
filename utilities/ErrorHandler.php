@@ -1,4 +1,6 @@
 <?php
+
+// Custom error handling for hhvm
 function error_handler ($errorNumber, $message, $errfile, $errline) {
   switch ($errorNumber) {
     case E_ERROR :

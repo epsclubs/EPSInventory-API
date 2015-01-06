@@ -1,7 +1,7 @@
 <?php
-
-require 'utilities/ErrorHandler.php';
-set_error_handler(error_handler);
+// Error Handling
+// require 'utilities/ErrorHandler.php';
+// set_error_handler(error_handler);
 
 require('vendor/autoload.php');
 

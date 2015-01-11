@@ -102,7 +102,7 @@ $.get( "http://example.com/api/?req="+req })
 ```
 
 ##TO-DO
-- [ ] `User` Object Model (authentication and stuff)
+- [x] `User` Object Model (authentication and stuff)
 
 ## Example Server Response
 

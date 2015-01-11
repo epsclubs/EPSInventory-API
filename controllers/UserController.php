@@ -31,7 +31,7 @@ class UserController{
     $collection = EPSI\MongoConnector::getMongoCollection('eps-inv-users');
     if(isset($this->_params['_id']))
     {
-      $cursor = $collection->find([$this->_params['_id']]);
+      $cursor = $collection->find([(int)$this->_params['_id']]);
     }else{
       $cursor = $collection->find();
     }

@@ -23,7 +23,7 @@ class UserController{
 
     $cursor = $collection->find(['_id'=>(int)$this->_params['_id'],
                                   'pass'=>$this->_params['pass']]);
-    if($cursor->count() >= 0){return true;}
+    if($cursor->count() > 0){return true;}
     else{return false;}
   }
 

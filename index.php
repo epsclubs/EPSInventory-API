@@ -62,7 +62,7 @@ try {
   $action = strtolower($params['action']).'Action';
 
   if( file_exists("controllers/{$controller}.php") ) {
-    // $_mongoCollection = EPSI\MongoConnector::getMongoCollection();
+    // $_mongoCollection = EPSI\MongoConnector::getMongoCollection('eps-inv');
     include_once "controllers/{$controller}.php";
   } else {
     throw new Exception('Controller is invalid.');

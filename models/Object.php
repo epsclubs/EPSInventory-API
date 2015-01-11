@@ -30,7 +30,7 @@ class Object{
       'parent'=>$this->parent,
       'properties'=>['name'=>$this->properties['name']]
     ];
-    $_mongoCollection = EPSI\MongoConnector::getMongoCollection();
+    $_mongoCollection = EPSI\MongoConnector::getMongoCollection('eps-inv');
     return $_mongoCollection->update($key,$document,['upsert'=>true]);
     // return $_mongoCollection->insert($document);
   }

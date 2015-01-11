@@ -9,7 +9,7 @@ echo '<pre>';
 // $db = $m->epsclubs;
 // $db = EPSI\MongoConnector::getMongoDB();
 // $collection = $db->cartoons;
-// $collection = EPSI\MongoConnector::getMongoCollection();
+// $collection = EPSI\MongoConnector::getMongoCollection('eps-inv');
 // // $collection->remove();
 // var_dump($collection);
 // // var_dump(EPSI\MongoConnector::getMongoCursor());

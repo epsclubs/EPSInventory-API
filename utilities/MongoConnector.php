@@ -15,11 +15,14 @@ class MongoConnector{
     $dbName = self::$db;
     return $client->$dbName;
   }
-  public static function getMongoCollection():\MongoCollection{
+  public static function getMongoCollection(?string $collection):\MongoCollection{
+    if(!$collection){$collection == self::$default_collection}
     $db = self::getMongoDB();
-    $collectionName = self::$collection;
+    $collectionName = $collection;
     return $db->$collectionName;
   }
+
+  // note: deprecated
   public static function getMongoCursor():\MongoCursor{
     $collection = self::getMongoCollection();
     return $collection->find();

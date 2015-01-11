@@ -18,7 +18,7 @@ class ObjectController{
   }
 
   public function readAction():?array{
-    $collection = EPSI\MongoConnector::getMongoCollection();
+    $collection = EPSI\MongoConnector::getMongoCollection('eps-inv');
     if(isset($this->_params['criteria']))
     {
 
@@ -59,7 +59,7 @@ class ObjectController{
   }
 
   public function removeAction():bool{
-    $collection = EPSI\MongoConnector::getMongoCollection();
+    $collection = EPSI\MongoConnector::getMongoCollection('eps-inv');
 
     if(!isset($this->_params['criteria'])) throw new Exception("Cannot remove Object: Criteria not found.");
 
@@ -73,7 +73,7 @@ class ObjectController{
   }
 
   public function updateAction():bool{
-    $collection = EPSI\MongoConnector::getMongoCollection();
+    $collection = EPSI\MongoConnector::getMongoCollection('eps-inv');
 
     if(!isset($this->_params['criteria'])) throw new Exception("Cannot update Object: Criteria not found.");
     if(!isset($this->_params['properties'])) throw new Exception("Cannot update Object: Properties not found.");
@@ -89,7 +89,7 @@ class ObjectController{
   }
 
   public function unsetAction():bool{
-    $collection = EPSI\MongoConnector::getMongoCollection();
+    $collection = EPSI\MongoConnector::getMongoCollection('eps-inv');
 
     if(!isset($this->_params['criteria'])) throw new Exception("Cannot pull Object properties: Criteria not found.");
     if(!isset($this->_params['properties'])) throw new Exception("Cannot pull Object properties: Properties not found.");

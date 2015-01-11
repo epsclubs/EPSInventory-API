@@ -16,7 +16,9 @@ class MongoConnector{
     return $client->$dbName;
   }
   public static function getMongoCollection(?string $collection):\MongoCollection{
-    if(!$collection){$collection == self::$default_collection}
+    if(!$collection){
+      $collection == self::$default_collection
+    }
     $db = self::getMongoDB();
     $collectionName = $collection;
     return $db->$collectionName;

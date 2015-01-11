@@ -12,7 +12,7 @@ class UserController{
     !isset($this->_params['pass']))
     {throw new Exception("Cannot Create User: Parameter incomplete.");}
 
-    $usr = new User(null,$this->_params['_id'],$this->_params['pass']);
+    $usr = new User($this->_params['_id'],$this->_params['pass']);
     return $usr->__save();
   }
 

@@ -3,7 +3,7 @@ EPSInventory-API
 Application Programming Interface for the EPS Inventory Project.
 
 ##Overview
-Two data models are used for this API, `User` and `Object`.
+Two data models are used for this API, `Object` and `User`.
 
 ####Object
 Properties: `$_id`, `$parent`, `$type`, `$properties`
@@ -18,6 +18,12 @@ properties: {
   "unit": "gram"
 }
 ```
+
+####User
+Properties: `$_id`, `$pass`
+* $_id: an int representation of role (ex. `1`) note: 0 - Admin, 1 - Guest/User
+* $pass: password string (ex. `122333aabA-&`)
+
 ##Preparing an API call
 
 An API call consists of the following parameters:
@@ -54,12 +60,27 @@ Output (It's a string!):
 
 Action | Parameters | Response
 ---- | ---------- | --------
-create | `string parent`, `string type`, `array<string> properties` | `array` of `Object`
-read | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>Optional: `bool tree`(gets all sub-Objects) ex.`{options:{tree:true}}` | `array` of `Object`
-remove | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}` | `boolean`
-update | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
-unset | `array criteria` ex.`{name:benzene, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
+create | `string parent`, `string type`, `array<string> properties` | `success`:`true|false(w/ data)`
+read | `array criteria` ex.`{properties:{name:benzene}, _id:54a36e477cc2bfaa030041a8}`,<br>Optional: `bool tree`(gets all sub-Objects) ex.`{options:{tree:true}}` | `array` of `Object`
+remove | `array criteria` ex.`{properties:{name:benzene}, _id:54a36e477cc2bfaa030041a8}` | `boolean`
+update | `array criteria` ex.`{properties:{name:benzene}, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
+unset | `array criteria` ex.`{properties:{name:benzene}, _id:54a36e477cc2bfaa030041a8}`,<br>`array<string> properties`,<br>`bool multiple`(updates all available records) ex.`{options:{multiple:true}}`| `boolean`
 
+####List of actions available for `User` model`(controller:user)`
+
+* `create`: Creates a User
+* `authenticate`: Checks the username and password
+* `read`: Returns a User
+* `remove`: Removes a User
+* `changepass`: Changes the User password
+
+Action | Parameters | Response
+---- | ---------- | --------
+create | `int _id`, `string pass` | `success`:`true|false(w/ data)`
+authenticate | `int _id`, `string pass` | `success`:`true|false(w/ data)`
+read | Optional: `int _id` | `Array` of 'User'
+remove | `int _id` | `success`:`true|false(w/ data)`
+changepass | `int _id`, `string pass` | `success`:`true|false(w/ data)`
 
 ##Calling the API
 API calls can be made with either POST or GET request.

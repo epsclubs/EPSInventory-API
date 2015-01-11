@@ -10,6 +10,7 @@ $applications = array(
 );
 
 include_once 'models/Object.php';
+include_once 'models/User.php';
 
 try {
 

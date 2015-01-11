@@ -50,7 +50,7 @@ class UserController{
 
     if(!isset($this->_params['_id'])) throw new Exception("Cannot remove User: _id not found.");
 
-    return (bool)$collection->remove($this->_params['_id']);
+    return (bool)$collection->remove(['_id'=>(int)$this->_params['_id']]);
   }
 
   public function changepassAction():array{

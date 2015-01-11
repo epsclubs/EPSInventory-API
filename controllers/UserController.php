@@ -12,7 +12,7 @@ class UserController{
     !isset($this->_params['pass']))
     {throw new Exception("Cannot Create User: Parameter incomplete.");}
 
-    $usr = new User($this->_params['_id'],$this->_params['pass']);
+    $usr = new User((int)$this->_params['_id'],$this->_params['pass']);
     return $usr->__save();
   }
 
@@ -21,7 +21,7 @@ class UserController{
     if(!(isset($this->_params['_id']) && isset($this->_params['pass'])))
       {throw new Exception("Cannot authenticate User: Criteria not found.");}
 
-    $cursor = $collection->find(['_id'=>$this->_params['_id'],
+    $cursor = $collection->find(['_id'=>(int)$this->_params['_id'],
                                   'pass'=>$this->_params['pass']]);
     if($cursor->count() >= 0){return true;}
     else{return false;}

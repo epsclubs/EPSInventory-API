@@ -85,7 +85,7 @@ class ObjectController{
       }
     }
 
-    return (bool)$collection->update($this->_params['criteria'],['$set'=>$this->_params['properties']],['upsert'=>true,$this->_params['options']['multiple']]);
+    return (bool)$collection->update($this->_params['criteria'],['$set'=>$this->_params['properties']],['upsert'=>true,'multiple'=>$this->_params['options']['multiple']]);
   }
 
   public function unsetAction():bool{

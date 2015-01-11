@@ -26,7 +26,7 @@ class MongoConnector{
 
   // note: deprecated
   public static function getMongoCursor():\MongoCursor{
-    $collection = self::getMongoCollection();
+    $collection = self::getMongoCollection(null);
     return $collection->find();
   }
 }

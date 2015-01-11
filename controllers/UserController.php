@@ -64,7 +64,7 @@ class UserController{
       }
     }catch(Exception $e){
       if($e->getMessage == 'Cannot remove User: _id not found.'){
-        throw new Exception("Cannot ChangePass: _id not found.")
+        throw new Exception("Cannot ChangePass: _id not found.");
       }
     }
     throw new Exception("Cannot Changepass: and Unknown error had occured");
